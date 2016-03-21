@@ -18,7 +18,7 @@ public class Prodaz {
     public static void ShowProdaz(Tovar tovar,Prodaz prodaz) throws IOException{
         Scanner input= new Scanner(System.in);
 
-        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Text operations/result");
+        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/result");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
         String line;
@@ -42,10 +42,6 @@ public class Prodaz {
                 } while (line != null);
             }catch (IOException j){};
         br.close();
-        /*int chose;
-        System.out.println("Продолжить поиск по продажам? 1/0");
-        chose = input.nextInt();
-        if(chose == 1) ShowProdaz(prodaz);*/
     }
 
 }

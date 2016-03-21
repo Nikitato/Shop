@@ -59,7 +59,7 @@ class Tovar{
 
     public static void RewriteSL(Tovar tovar, int n) throws IOException{
 
-        FileOutputStream foutS= new FileOutputStream("/home/nikita/IdeaProjects/Text operations/shoplist");
+        FileOutputStream foutS= new FileOutputStream("/home/nikita/IdeaProjects/Shop/shoplist");
         BufferedWriter bws = new BufferedWriter(new OutputStreamWriter(foutS));
 
         for (int m=0;m<n;m++){
@@ -74,7 +74,7 @@ class Tovar{
 
         try {
 
-            FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Text operations/shoplist");
+            FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/shoplist");
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
 
@@ -91,7 +91,7 @@ class Tovar{
     public static Tovar GetList() throws IOException{
 
 
-        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Text operations/shoplist");
+        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/shoplist");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
         String line;
@@ -120,7 +120,7 @@ class Tovar{
     }
     public static int GetN(Tovar tovar) throws IOException{
 
-        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Text operations/shoplist");
+        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/shoplist");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
         String line;
         int n = 0;
@@ -134,7 +134,7 @@ class Tovar{
     }
     public static void Sale(Tovar tovar,int n, int IDs,Prodaz prodaz) throws IOException{
 
-        FileOutputStream foutR= new FileOutputStream("/home/nikita/IdeaProjects/Text operations/result",true);
+        FileOutputStream foutR= new FileOutputStream("/home/nikita/IdeaProjects/Shop/result",true);
         BufferedWriter bwr = new BufferedWriter(new OutputStreamWriter(foutR));
 
         Scanner input = new Scanner(System.in);
@@ -167,7 +167,7 @@ class Tovar{
 
     }
     public static void WriteResutl() throws IOException{
-        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Text operations/result");
+        FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/result");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
         String line;

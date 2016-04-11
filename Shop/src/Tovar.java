@@ -25,7 +25,7 @@ class Tovar{
         return 50;
     }
 
-    public static void AddTovar(Tovar tovar,Prodaz prodaz,int N) throws IOException {
+    public void AddTovar(Tovar tovar,Prodaz prodaz,int N) throws IOException {
         Scanner input = new Scanner(System.in);
         int INdex;
         System.out.println("Введите ID товара, который вы добавляете:");
@@ -45,13 +45,13 @@ class Tovar{
             tovar.PriseData[N-1] = input.nextInt();
             System.out.println("Введите количество товара:");
             tovar.AmntData[N-1] = input.nextInt();
-            tovar.RewriteSL(tovar,N);
+            RewriteSL(tovar,N);
 
         }
         else {
             System.out.println("Введите количество товара:");
             tovar.AmntData[INdex] = tovar.AmntData[INdex] + input.nextInt();
-            tovar.RewriteSL(tovar,N);
+            RewriteSL(tovar,N);
         }
 
         Menu.SHMenu(tovar, prodaz);
@@ -70,7 +70,7 @@ class Tovar{
         }
         bws.close();
     }
-    public static  void WriteList(){
+    public  void WriteList(){
 
         try {
 
@@ -88,7 +88,7 @@ class Tovar{
             }catch (IOException q){};
     }
 
-    public static Tovar GetList() throws IOException{
+    public Tovar GetList() throws IOException{
 
 
         FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/shoplist");
@@ -100,7 +100,7 @@ class Tovar{
 
         do {
             line = br.readLine();
-            //System.out.println(line);
+
             String[] parts = line.split(";");
 
             tovar.IDData[n] = new Integer(parts[0]);
@@ -118,7 +118,7 @@ class Tovar{
         return tovar;
 
     }
-    public static int GetN(Tovar tovar) throws IOException{
+    public int GetN() throws IOException{
 
         FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/shoplist");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -132,10 +132,8 @@ class Tovar{
 
         return n;
     }
-    public static void Sale(Tovar tovar,int n, int IDs,Prodaz prodaz) throws IOException{
+    public void Sale(Tovar tovar,int n, int IDs,Prodaz prodaz) throws IOException{
 
-        FileOutputStream foutR= new FileOutputStream("/home/nikita/IdeaProjects/Shop/result",true);
-        BufferedWriter bwr = new BufferedWriter(new OutputStreamWriter(foutR));
 
         Scanner input = new Scanner(System.in);
         int IDin, Amntin, INdex;
@@ -150,14 +148,16 @@ class Tovar{
         System.out.println("Введите количество товара:");
         Amntin=input.nextInt();
         if(tovar.AmntData[INdex] < Amntin ) {System.out.println("Товара не хватает!"); Menu.SHMenu(tovar, prodaz);}
-        else { tovar.AmntData[INdex]= tovar.AmntData[INdex] - Amntin;
-            bwr.write(IDs+" "+Amntin*tovar.PriseData[INdex]);
-            bwr.newLine();
-            bwr.close();
+        else {
+            tovar.AmntData[INdex]= tovar.AmntData[INdex] - Amntin;
             prodaz.MakeProdaz(prodaz,tovar,IDs,INdex,Amntin);
+            prodaz.RewriteRes(prodaz,IDs);
             IDs++;
+
         }
+
         RewriteSL(tovar,n);
+
 
         System.out.println("Продолжить продажу? 1/0");
         chose = input.nextInt();
@@ -166,7 +166,7 @@ class Tovar{
 
 
     }
-    public static void WriteResutl() throws IOException{
+    public void WriteResutl() throws IOException{
         FileInputStream fis = new FileInputStream("/home/nikita/IdeaProjects/Shop/result");
         BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
@@ -174,7 +174,15 @@ class Tovar{
         do{
             line=br.readLine();
             System.out.println(line);
-          }while (line!=null);
+          }while (!(line.endsWith(";")));
         br.close();
     }
+
+    /*{ tovar.AmntData[INdex]= tovar.AmntData[INdex] - Amntin;
+            bwr.write(IDs+" "+Amntin*tovar.PriseData[INdex]);
+            bwr.newLine();
+            bwr.close();
+            prodaz.MakeProdaz(prodaz,tovar,IDs,INdex,Amntin);
+            IDs++;
+        }*/
 }

@@ -13,18 +13,18 @@ public class Menu {
     str3="3. Данные по продажам";
     int chose = Integer.parseInt(JOptionPane.showInputDialog(null,"Меню магазина\n"+str1+"\n"+str2+"\n"+str3,title,type));
 
+
     tovar = tovar.GetList();
-    int n = tovar.GetN(tovar);
-    int IDs =0 ;
-    switch (chose){
+    int n = tovar.GetN();
+    int IDs =prodaz.GetIDs(prodaz) ;
+
+        switch (chose){
         case 1:
             tovar.WriteList();
             tovar.Sale(tovar,n, IDs, prodaz);
             SHMenu(tovar, prodaz);
             break;
         case 2:
-            //title=str2;
-            //JOptionPane.showMessageDialog(null,"не готово",title,type);
             tovar.AddTovar(tovar,prodaz,n);
             break;
         case 3:

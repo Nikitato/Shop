@@ -8,11 +8,22 @@ import java.util.*;
 
 class Tovar{
 
-    int [] IDData = new int [50];
-    String [] NameData = new String [50];
-    int [] PriseData = new int [50];
-    int [] AmntData = new int [50];
+    int IDData = 0;
+    String NameData = "";
+    int PriseData = 0;
+    int AmntData = 0;
 
+    HashMap<Integer, Tovar> Goods = new HashMap<>();
+
+    ArrayList<Integer> ids= new ArrayList<>();
+
+    public Tovar(int IDData, String NameData, int PriseData, int AmntData){
+
+        this.IDData=IDData;
+        this.NameData=NameData;
+        this.PriseData=PriseData;
+        this.AmntData=AmntData;
+    }
 
     public static int findIndex(int[] IDData, int IDin) {
 
@@ -103,16 +114,22 @@ class Tovar{
 
             String[] parts = line.split(";");
 
-            tovar.IDData[n] = new Integer(parts[0]);
+            int IDData = new Integer(parts[0]);
 
-            tovar.NameData[n] = parts[1];
+            String NameData = parts[1];
 
-            tovar.PriseData[n] = new Integer(parts[2]);
+            int PriseData = new Integer(parts[2]);
 
-            tovar.AmntData[n] = new Integer(parts[3]);
+            int AmntData = new Integer(parts[3]);
 
             n++;
-            } while (!(line.endsWith(";")));
+
+            Tovar tovar1 = new Tovar(IDData, NameData, PriseData, AmntData);
+            this.Goods.put(tovar1.IDData, tovar1);
+            ids.add(IDData);
+
+
+        } while (!(line.endsWith(";")));
 
         br.close();
         return tovar;
